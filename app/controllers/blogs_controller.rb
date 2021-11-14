@@ -11,5 +11,7 @@ class BlogsController < ApplicationController
     @blog.user_id = current_user.id #現在ログインしているuserのidを、blogのuser_idカラムに挿入する
     render :new if @blog.invalid?
   end
-  #省略
+  def show
+    @favorite = current_user.favorites.find_by(blog_id: @blog.id)
+  end
 end
